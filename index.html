@@ -34,13 +34,6 @@
             border: 1px solid #e2e8f0;
         }
         
-        .modern-card {
-            background: white;
-            border-radius: 20px;
-            border: 1px solid #e2e8f0;
-            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
-        }
-
         .tab-content { display: none; opacity: 0; }
         .tab-content.active { display: block; opacity: 1; animation: slideUp 0.5s ease forwards; }
         @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
@@ -59,9 +52,9 @@
 
         .modern-nav-btn {
             @apply py-5 px-3 rounded-2xl font-black text-sm transition-all duration-200 border-2 border-slate-300 flex flex-col items-center justify-center gap-2;
-            background: #f1f5f9; 
+            background: #ffffff; 
             color: #475569;
-            box-shadow: 0 4px 0 0 #cbd5e1; 
+            box-shadow: 0 4px 0 0 #e2e8f0; 
         }
         .modern-nav-btn:hover {
             @apply border-sky-400 text-sky-700 bg-sky-50;
@@ -69,7 +62,7 @@
             box-shadow: 0 6px 0 0 #bae6fd;
         }
         .modern-nav-btn.active {
-            @apply border-sky-600 text-white bg-sky-600;
+            @apply border-sky-500 text-white bg-sky-600;
             box-shadow: 0 0 0 0 transparent;
             transform: translateY(4px); 
         }
@@ -135,6 +128,8 @@
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
             border: 4px solid rgba(255, 255, 255, 0.1);
         }
+
+        /* 뒤로가기 버튼: 흰색 배경 & 하늘색 글자 */
         .modal-back-btn {
             position: fixed;
             top: 24px;
@@ -148,7 +143,7 @@
             transform: translateX(4px);
         }
 
-        /* 가상 표 스타일 (너비 및 정렬 완벽 최적화) */
+        /* 가상 표 스타일 (너비 고정 및 가로/세로 정렬 완벽 최적화) */
         .mock-table {
             width: 100%;
             border-collapse: collapse;
@@ -156,24 +151,22 @@
             background: white;
             border-radius: 12px;
             overflow: hidden;
-            table-layout: fixed; /* 열 너비를 균등 강제 고정 */
+            table-layout: fixed; 
         }
         .mock-table th {
             @apply bg-slate-50 text-slate-400 font-bold py-3;
             text-align: center;
             vertical-align: middle;
             line-height: 1;
-            padding-left: 0;
-            padding-right: 0;
+            padding: 12px 0;
         }
         .mock-table td {
-            @apply py-3 border-b border-slate-50;
+            @apply border-b border-slate-50 py-3;
             text-align: center;
             vertical-align: middle;
             font-weight: 700;
             line-height: 1.2;
-            padding-left: 0;
-            padding-right: 0;
+            padding: 12px 0;
         }
     </style>
 </head>
@@ -181,6 +174,7 @@
 
     <!-- 이미지 확대 모달 -->
     <div id="image-modal" class="image-modal" onclick="closeImageModal()">
+        <!-- 뒤로가기 버튼 (흰색 배경) -->
         <button class="modal-back-btn" onclick="closeImageModal()">
             <span class="text-xl">←</span> 뒤로가기
         </button>
@@ -200,9 +194,9 @@
                 <div class="inline-block px-4 py-1.5 bg-sky-100 text-sky-700 rounded-full text-xs font-black mb-6 tracking-widest uppercase">
                     키즈에어 프로젝트
                 </div>
-                <h1 class="text-4xl md:text-6xl font-black text-slate-900 mb-6 tracking-tight leading-tight">우리 아이를 위한<br><span class="text-sky-600">실내 공기질 케어 앱</span></h1>
+                <h1 class="text-4xl md:text-6xl font-black text-slate-900 mb-6 tracking-tight leading-tight italic">맑은 공기를 담은<br><span class="text-sky-600">어린이집 실내 케어 앱</span></h1>
                 <p class="text-slate-500 text-lg md:text-xl leading-relaxed max-w-3xl font-medium">
-                    정부 공공데이터를 활용해 영유아 시설의 공기 상태를 실시간으로 보여주고,<br class="hidden md:block"> 
+                    정부 공공데이터를 활용해 영유아 시설의 공기 상태를 실시간으로 보여주고,<br> 
                     직관적인 수치 정보를 통해 부모가 안심할 수 있는 환경을 설계했습니다.
                 </p>
                 <div class="flex flex-wrap justify-center md:justify-start gap-4 mt-10 text-[11px] font-black text-slate-400">
@@ -244,17 +238,17 @@
                     </div>
                     <div class="space-y-6">
                         <div class="p-6 bg-slate-50 rounded-3xl border border-slate-200">
-                            <p class="text-sm text-slate-700 leading-relaxed font-bold mb-2">환경 리스크</p>
+                            <p class="text-sm text-slate-700 leading-relaxed font-bold mb-2 italic">환경 리스크</p>
                             <p class="text-sm text-slate-600 leading-relaxed">
                                 실외보다 실내 공기 오염이 영유아 건강에 더 치명적임에도 불구하고,<br>
                                 어린이집의 실시간 데이터를 통합해서 보여주는 전문 서비스는 없었습니다.
                             </p>
                         </div>
                         <div class="p-6 bg-slate-50 rounded-3xl border border-slate-200">
-                            <p class="text-sm text-slate-700 leading-relaxed font-bold mb-2">학부모 니즈</p>
+                            <p class="text-sm text-slate-700 leading-relaxed font-bold mb-2 italic">사용자 니즈 파악</p>
                             <p class="text-sm text-slate-600 leading-relaxed">
                                 학부모들은 미세먼지가 심한 날, 자녀가 있는 공간의 환기 상태나<br>
-                                공기청정기 가동 여부를 확인하고 싶어 하는 갈증이 매우 컸습니다.
+                                공기청정기 가동 여부를 직접 확인하고 싶어 하는 갈증이 매우 컸습니다.
                             </p>
                         </div>
                     </div>
@@ -296,8 +290,8 @@
                 <div class="space-y-6 mb-10 text-center">
                     <h3 class="text-3xl font-black text-slate-900 border-b-4 border-slate-100 pb-6">화면 구조 설계</h3>
                     <p class="text-slate-600 text-base leading-relaxed font-medium max-w-3xl mx-auto">
-                        공공데이터 API를 실시간으로 가공하여 스플래시, 메인 대시보드, 상세 조회,<br class="hidden md:block">
-                        개인 위젯 설정까지 이어지는 매끄러운 흐름을 기획했습니다.<br class="hidden md:block">
+                        공공데이터 API를 실시간으로 가공하여 스플래시, 메인 대시보드, 상세 조회,<br>
+                        개인 위젯 설정까지 이어지는 매끄러운 흐름을 기획했습니다.<br>
                         사용자가 원하는 정보를 최소한의 터치로 찾을 수 있도록 최적화했습니다.
                     </p>
                 </div>
@@ -315,11 +309,11 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
                     <div class="p-8 bg-slate-50 rounded-[2.5rem] space-y-3 border border-slate-100">
                         <h4 class="font-black text-slate-800 text-base flex items-center gap-2">📍 위치 기반 인터랙션</h4>
-                        <p class="text-xs text-slate-500 leading-relaxed font-medium">현재 위치나 자녀가 다니는 어린이집을 등록하여<br class="hidden md:block"> 주변 공기 상태를 한눈에 파악합니다.</p>
+                        <p class="text-xs text-slate-500 leading-relaxed font-medium">현재 위치나 자녀가 다니는 어린이집을 등록하여<br>주변 공기 상태를 한눈에 파악합니다.</p>
                     </div>
                     <div class="p-8 bg-slate-50 rounded-[2.5rem] space-y-3 border border-slate-100">
                         <h4 class="font-black text-slate-800 text-base flex items-center gap-2">📌 맞춤형 위젯 시스템</h4>
-                        <p class="text-xs text-slate-500 leading-relaxed font-medium">앱을 직접 열지 않고도 스마트폰 배경화면에서<br class="hidden md:block"> 실시간 공기 상태를 바로 확인합니다.</p>
+                        <p class="text-xs text-slate-500 leading-relaxed font-medium">앱을 직접 열지 않고도 스마트폰 배경화면에서<br>실시간 공기 상태를 바로 확인합니다.</p>
                     </div>
                 </div>
             </div>
@@ -332,7 +326,7 @@
                 <div class="max-w-3xl mb-16 relative z-10 text-center md:text-left">
                     <h3 class="text-4xl font-black text-slate-900 mb-8">주요 화면 및 UX 기획</h3>
                     <p class="text-slate-600 text-lg leading-relaxed font-medium">
-                        어린이집 실내 환경을 투명하게 공개하여 학부모의 신뢰를 얻는 것이 핵심입니다.<br class="hidden md:block">
+                        어린이집 실내 환경을 투명하게 공개하여 학부모의 신뢰를 얻는 것이 핵심입니다.<br>
                         누구나 쉽게 공기질의 상태를 판별할 수 있도록 직관적인 인터페이스를 설계했습니다.
                     </p>
                 </div>
@@ -343,25 +337,25 @@
                             <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center text-3xl shrink-0 border border-slate-200 shadow-sm">😊</div>
                             <div class="space-y-2">
                                 <h4 class="font-black text-slate-800 text-xl">직관적인 상태 알림</h4>
-                                <p class="text-sm text-slate-500 leading-relaxed font-medium">복잡한 수치 대신 색상과 이모지를 적극적으로 활용하여,<br class="hidden md:block"> 사용자가 한눈에 현재 위험도를 인지할 수 있도록 돕습니다.</p>
+                                <p class="text-sm text-slate-500 leading-relaxed font-medium">복잡한 수치 대신 색상과 이모지를 적극적으로 활용하여,<br>사용자가 한눈에 현재 위험도를 인지할 수 있도록 돕습니다.</p>
                             </div>
                         </div>
                         <div class="flex gap-6 items-start">
                             <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center text-3xl shrink-0 border border-slate-200 shadow-sm">📋</div>
                             <div class="space-y-2">
                                 <h4 class="font-black text-slate-800 text-xl">시간대별 세부 데이터</h4>
-                                <p class="text-sm text-slate-500 leading-relaxed font-medium">단순 현재 수치를 넘어, 시간대별 공기질 변화를 표로 제공하여<br class="hidden md:block"> 운영의 투명성과 신뢰도를 확보합니다.</p>
+                                <p class="text-sm text-slate-500 leading-relaxed font-medium">단순 현재 수치를 넘어, 시간대별 공기질 변화를 표로 제공하여<br>운영의 투명성과 신뢰도를 확보합니다.</p>
                             </div>
                         </div>
                     </div>
 
                     <!-- 가상 UI 체험 위젯 (정렬 완벽 최적화됨) -->
-                    <div class="w-80 h-[520px] bg-white p-8 flex flex-col relative overflow-hidden rounded-[32px] border-4 border-slate-200 shadow-2xl">
+                    <div class="w-80 h-[540px] bg-white p-8 flex flex-col relative overflow-hidden rounded-[32px] border-4 border-slate-200 shadow-2xl">
                         <p class="text-[10px] font-black text-slate-400 mb-8 text-center uppercase tracking-[0.4em]">가상 UI 체험</p>
                         
                         <div id="statusBall" class="w-44 h-44 mx-auto rounded-full bg-sky-50 flex flex-col items-center justify-center mb-10 transition-all duration-700 border border-sky-100">
-                            <span id="statusEmoji" class="text-6xl mb-3">😊</span>
-                            <span id="statusLabel" class="text-sm font-black text-sky-500 tracking-tight">매우 좋음</span>
+                            <span id="statusEmoji" class="text-6xl mb-3 text-center">😊</span>
+                            <span id="statusLabel" class="text-sm font-black text-sky-500 tracking-tight text-center">매우 좋음</span>
                         </div>
 
                         <div class="space-y-4">
@@ -391,7 +385,6 @@
                             </table>
                         </div>
 
-                        <!-- 버튼 정렬 개선 -->
                         <div class="flex gap-3 mt-auto h-14">
                             <button onclick="simulateStatus('good')" class="flex-1 bg-sky-600 text-white text-[11px] font-black rounded-2xl active:scale-95 transition-transform shadow-md flex items-center justify-center">좋음 상태</button>
                             <button onclick="simulateStatus('bad')" class="flex-1 bg-rose-500 text-white text-[11px] font-black rounded-2xl active:scale-95 transition-transform shadow-md flex items-center justify-center">나쁨 상태</button>
@@ -401,7 +394,7 @@
             </div>
 
             <div class="space-y-12">
-                <h3 class="text-3xl font-black text-slate-900 text-center tracking-tight">기획안에서 실제 구현 화면까지</h3>
+                <h3 class="text-3xl font-black text-slate-900 text-center tracking-tight italic">기획안에서 실제 구현 화면까지</h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
                     
                     <div class="content-card p-10 space-y-8 cursor-pointer" onclick="openImageModal('kids_air_splash_final.png')">
@@ -530,7 +523,7 @@
                 ball.className = "w-44 h-44 mx-auto rounded-full bg-sky-50 flex flex-col items-center justify-center mb-10 transition-all duration-700 border border-sky-100";
                 emoji.innerText = "😊";
                 label.innerText = "매우 좋음";
-                label.className = "text-sm font-black text-sky-500 tracking-tight";
+                label.className = "text-sm font-black text-sky-500 tracking-tight text-center";
                 tableBody.innerHTML = `
                     <tr><td>09:00</td><td>21</td><td class="text-sky-500">12</td><td class="text-sky-500">8</td></tr>
                     <tr><td>10:00</td><td>22</td><td class="text-sky-500">15</td><td class="text-sky-500">10</td></tr>
@@ -540,7 +533,7 @@
                 ball.className = "w-44 h-44 mx-auto rounded-full bg-rose-50 flex flex-col items-center justify-center mb-10 transition-all duration-700 border border-rose-100";
                 emoji.innerText = "😷";
                 label.innerText = "매우 나쁨";
-                label.className = "text-sm font-black text-rose-500 tracking-tight";
+                label.className = "text-sm font-black text-rose-500 tracking-tight text-center";
                 tableBody.innerHTML = `
                     <tr><td>09:00</td><td>21</td><td class="text-amber-500">60</td><td class="text-amber-500">56</td></tr>
                     <tr><td>10:00</td><td>23</td><td class="text-rose-500">78</td><td class="text-rose-500">88</td></tr>
