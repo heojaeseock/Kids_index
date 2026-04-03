@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>허재석 포트폴리오 | Kids Air 앱 기획</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" as="style" crossorigin href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css" />
+    
+    <!-- Chosen Palette: Modern Clean Slate (Primary) with Neumorphic Spotlight Elements. Soft Sky Blue (#0EA5E9) for accents. -->
+    <!-- Application Structure Plan: A high-fidelity professional dashboard. It prioritizes information hierarchy: Problem Definition -> Data-driven Strategy -> Architecture (IA) -> Thematic Design Guide (Neumorphism Focus) -> Implementation Comparison -> Impact. This flow allows the specific design technique to be explained as a specialized solution within a broader professional framework. -->
+    <!-- Visualization & Content Choices: SWOT -> Clean Bordered Grid with interactive hover depth. Neumorphism -> A dedicated dark-mode simulation area to highlight shadow logic (No SVG). Process -> Side-by-side card layouts for Wireframe vs Final UI comparisons. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <style>
+        body { 
+            font-family: 'Pretendard', sans-serif; 
+            background-color: #f8fafc; 
+            color: #334155; 
+            margin: 0;
+            padding: 0;
+            word-break: keep-all; 
+            overflow-x: hidden;
+        }
+
+        .content-card {
+            background: white;
+            border-radius: 24px;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 4px 20px -5px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        /* 🎨 Neumorphism Tech Guide Styles 🎨 */
+        .neo-stage {
+            background: #e0e5ec;
+            border-radius: 32px;
+            padding: 3rem;
+        }
+        
+        .neo-obj {
+            background: #e0e5ec;
+            box-shadow: 8px 8px 16px rgba(163,177,198,0.6), 
+                       -8px -8px 16px rgba(255,255,255, 0.8);
+            border-radius: 20px;
+        }
+        
+        .neo-inset-obj {
+            background: #e0e5ec;
+            box-shadow: inset 6px 6px 12px rgba(163, 177, 198, 0.6), 
+                        inset -6px -6px 12px rgba(255, 255, 255, 0.8);
+            border-radius: 20px;
+        }
+
+        .tab-content { display: none; opacity: 0; }
+        .tab-content.active { display: block; opacity: 1; animation: fadeIn 0.5s ease forwards; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .nav-link {
+            @apply px-6 py-3.5 rounded-2xl font-bold text-sm transition-all duration-300 relative;
+            color: #64748b;
+        }
+        .nav-link:hover { @apply bg-slate-100 text-slate-900; }
+        .nav-link.active {
+            @apply bg-sky-600 text-white shadow-xl shadow-sky-200 scale-105;
+        }
+
+        .img-display {
+            border-radius: 1.25rem;
+            width: 100%;
+            height: auto;
+            border: 1px solid #e2e8f0;
+            transition: transform 0.3s ease;
+        }
+        .img-display:hover { transform: scale(1.02); }
+
+        .chart-frame {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            height: 240px;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="min-h-screen flex flex-col items-center py-12 px-4 md:px-0">
+        
+        <!-- Header Section -->
+        <header class="max-w-5xl w-full mb-14 flex flex-col md:flex-row items-center gap-12">
+            <div class="w-36 h-36 shrink-0 bg-gradient-to-tr from-sky-400 to-sky-600 rounded-[48px] flex items-center justify-center text-6xl shadow-2xl shadow-sky-200 animate-pulse">
+                ☁️
+            </div>
+            <div class="flex-1 text-center md:text-left">
+                <div class="inline-flex items-center gap-2 px-4 py-1.5 bg-sky-100 text-sky-700 rounded-full text-xs font-black mb-5 tracking-widest uppercase">
+                    <span>Public Data Project</span>
+                </div>
+                <h1 class="text-4xl md:text-6xl font-black text-slate-900 mb-6 tracking-tight leading-tight">Kids Air<br><span class="text-sky-600">스마트 공기질 케어 앱</span></h1>
+                <p class="text-slate-500 text-lg md:text-xl leading-relaxed max-w-3xl font-medium">
+                    미취학 아동의 건강을 위해 공공데이터를 정밀하게 시각화하고,<br class="hidden md:block">
+                    <span class="text-slate-800 font-bold decoration-sky-400 decoration-4 underline underline-offset-8">뉴모피즘 기법</span>으로 상쾌한 사용자 경험을 설계했습니다.
+                </p>
+                <div class="flex flex-wrap justify-center md:justify-start gap-4 mt-10 text-[11px] font-black text-slate-400">
+                    <span class="bg-white border border-slate-200 px-5 py-2.5 rounded-2xl shadow-sm uppercase tracking-tighter">Timeline: 2021.03 - 06</span>
+                    <span class="bg-white border border-slate-200 px-5 py-2.5 rounded-2xl shadow-sm uppercase tracking-tighter">Role: Planning & UI/UX</span>
+                    <span class="bg-white border border-slate-200 px-5 py-2.5 rounded-2xl shadow-sm uppercase tracking-tighter">OS: Android Native</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Dynamic Navigation -->
+        <nav class="max-w-5xl w-full flex flex-wrap gap-3 justify-center mb-14 bg-white/80 backdrop-blur-md p-3 rounded-[32px] border border-slate-200 shadow-sm sticky top-6 z-50">
+            <button onclick="showTab(event, 'analysis')" class="nav-link active" id="initTab">시장 및 전략 분석</button>
+            <button onclick="showTab(event, 'architecture')" class="nav-link">정보 설계</button>
+            <button onclick="showTab(event, 'design-guide')" class="nav-link text-sky-600">뉴모피즘 가이드</button>
+            <button onclick="showTab(event, 'impact')" class="nav-link">기대 효과</button>
+        </nav>
+
+        <!-- Section 1: Market Analysis -->
+        <div id="analysis" class="max-w-5xl w-full tab-content active space-y-12">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="content-card p-10 space-y-8">
+                    <div class="space-y-2">
+                        <h3 class="text-2xl font-black text-slate-900 flex items-center gap-3">
+                            <span class="w-10 h-10 bg-rose-50 text-rose-500 rounded-xl flex items-center justify-center text-lg font-black">!</span>
+                            문제의 정의
+                        </h3>
+                        <p class="text-slate-500 text-sm font-medium">실내 공기질 관리의 사각지대를 데이터로 포착했습니다.</p>
+                    </div>
+                    <div class="space-y-5">
+                        <div class="p-6 bg-slate-50 rounded-2xl border-l-8 border-slate-300">
+                            <p class="text-sm text-slate-700 leading-relaxed">
+                                <strong class="text-slate-900 block mb-1">환경적 리스크</strong>
+                                실외보다 실내 공기 오염이 어린이 호흡기에 치명적이라는 연구 결과가 존재함에도 불구하고, 영유아 시설의 실시간 실내 데이터를 제공하는 통합 서비스가 전무함을 확인했습니다.
+                            </p>
+                        </div>
+                        <div class="p-6 bg-slate-50 rounded-2xl border-l-8 border-slate-300">
+                            <p class="text-sm text-slate-700 leading-relaxed">
+                                <strong class="text-slate-900 block mb-1">사용자 보이스 (학부모)</strong>
+                                맘카페 등 커뮤니티 분석 결과, 미세먼지 농도가 높은 날에도 어린이집의 환기 및 공기청정기 가동 여부를 알 수 없어 불안해하는 부모들의 정보 결핍 니즈를 확인했습니다.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="content-card p-10">
+                    <div class="space-y-2 mb-8">
+                        <h3 class="text-2xl font-black text-slate-900 flex items-center gap-3">
+                            <span class="w-10 h-10 bg-sky-50 text-sky-500 rounded-xl flex items-center justify-center text-lg font-black">S</span>
+                            전략적 포지셔닝
+                        </h3>
+                        <p class="text-slate-500 text-sm font-medium">SWOT 분석을 통한 서비스 차별화 지점을 도출했습니다.</p>
+                    </div>
+                    <div class="grid grid-cols-2 gap-5 h-72">
+                        <div class="bg-sky-50/50 p-5 rounded-3xl border border-sky-100 flex flex-col justify-center text-center group hover:bg-sky-50 transition-colors">
+                            <span class="text-xs font-black text-sky-600 uppercase tracking-widest mb-2 opacity-60">Strength</span>
+                            <span class="text-sm font-bold text-slate-800 leading-tight">국내 최초의 어린이집<br>실내 공기질 전문성</span>
+                        </div>
+                        <div class="bg-slate-50/50 p-5 rounded-3xl border border-slate-200 flex flex-col justify-center text-center group hover:bg-slate-100 transition-colors">
+                            <span class="text-xs font-black text-slate-400 uppercase tracking-widest mb-2 opacity-60">Weakness</span>
+                            <span class="text-sm font-bold text-slate-800 leading-tight">신규 브랜드로서의<br>사용자 신뢰 확보 과제</span>
+                        </div>
+                        <div class="bg-emerald-50/50 p-5 rounded-3xl border border-emerald-100 flex flex-col justify-center text-center group hover:bg-emerald-50 transition-colors">
+                            <span class="text-xs font-black text-emerald-600 uppercase tracking-widest mb-2 opacity-60">Opportunity</span>
+                            <span class="text-sm font-bold text-slate-800 leading-tight">환경 보호 및 케어에<br>대한 전국민적 경각심</span>
+                        </div>
+                        <div class="bg-rose-50/50 p-5 rounded-3xl border border-rose-100 flex flex-col justify-center text-center group hover:bg-rose-50 transition-colors">
+                            <span class="text-xs font-black text-rose-600 uppercase tracking-widest mb-2 opacity-60">Threat</span>
+                            <span class="text-sm font-bold text-slate-800 leading-tight">대형 알림장 앱의<br>데이터 연동 및 유사 기능</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 2: IA & Architecture -->
+        <div id="architecture" class="max-w-5xl w-full tab-content space-y-12">
+            <div class="content-card p-12">
+                <div class="flex flex-col lg:flex-row gap-16 items-start">
+                    <div class="flex-1 space-y-8">
+                        <div class="space-y-4">
+                            <h3 class="text-3xl font-black text-slate-900 border-b-4 border-slate-100 pb-6">Information Architecture</h3>
+                            <p class="text-slate-600 text-base leading-relaxed">
+                                공공데이터 API를 실시간으로 가공하여 사용자에게 가장 필요한 정보(미세먼지, CO2, TVOC)를 우선순위에 따라 배치했습니다. <strong class="text-sky-600">홈-상세정보-검색-개인화 설정</strong>으로 이어지는 매끄러운 플로우를 설계했습니다.
+                            </p>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="p-6 bg-slate-50 rounded-[2rem] space-y-3">
+                                <h4 class="font-black text-slate-800 text-sm flex items-center gap-2"><span class="text-sky-500">📍</span> 위치 기반 인터랙션</h4>
+                                <p class="text-xs text-slate-500 leading-relaxed">사용자의 현재 위치 혹은 등록된 어린이집 위치를 중심으로 주변 공기질 상태를 핀 디자인으로 시각화했습니다.</p>
+                            </div>
+                            <div class="p-6 bg-slate-50 rounded-[2rem] space-y-3">
+                                <h4 class="font-black text-slate-800 text-sm flex items-center gap-2"><span class="text-sky-500">📌</span> 마이 키즈 위젯</h4>
+                                <p class="text-xs text-slate-500 leading-relaxed">앱을 켜지 않아도 배경화면에서 실시간 수치를 확인할 수 있도록 전용 위젯 시스템의 데이터 구조를 정의했습니다.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-full lg:w-1/2 group">
+                        <img src="kids_air_ia.jpg" alt="정보 설계 구조도" class="img-display shadow-2xl" onerror="this.src='https://placehold.co/800x600/f1f5f9/94a3b8?text=kids_air_ia.jpg';">
+                        <p class="text-center text-[11px] font-black text-slate-400 mt-4 uppercase tracking-widest">[ Kids Air Information Architecture ]</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 3: Neumorphism Guide (The Core Highlight) -->
+        <div id="design-guide" class="max-w-5xl w-full tab-content space-y-16">
+            
+            <div class="content-card p-12 overflow-hidden relative">
+                <div class="absolute -top-10 -right-10 text-[12rem] opacity-5 font-black">UI</div>
+                <div class="max-w-3xl mb-16 relative z-10">
+                    <h3 class="text-4xl font-black text-slate-900 mb-8">Design Guide: Neumorphism</h3>
+                    <p class="text-slate-600 text-lg leading-relaxed">
+                        'Kids Air'는 맑고 투명한 공기의 느낌을 전하기 위해 불필요한 색채를 배제하고, **빛의 각도와 그림자의 깊이만으로 입체감을 구현**하는 뉴모피즘 디자인을 핵심 기법으로 선정했습니다.
+                    </p>
+                </div>
+
+                <!-- Simulation Guide Stage -->
+                <div class="neo-stage flex flex-col lg:flex-row gap-16 items-center justify-center shadow-inner">
+                    
+                    <div class="flex-1 space-y-10">
+                        <div class="flex gap-6">
+                            <div class="w-16 h-16 neo-obj flex items-center justify-center text-3xl shrink-0">🔆</div>
+                            <div class="space-y-2">
+                                <h4 class="font-black text-slate-800 text-xl">Light Source Logic</h4>
+                                <p class="text-sm text-slate-500 leading-relaxed">왼쪽 상단에서 들어오는 가상의 빛을 상정하여 화이트 하이라이트를 배치하고, 반대편에 소프트 섀도우를 적용해 배경에서 부드럽게 솟아오른 듯한 조형미를 완성했습니다.</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-6">
+                            <div class="w-16 h-16 neo-inset-obj flex items-center justify-center text-3xl shrink-0">🎨</div>
+                            <div class="space-y-2">
+                                <h4 class="font-black text-slate-800 text-xl">Clean Identity</h4>
+                                <p class="text-sm text-slate-500 leading-relaxed">전체 배경과 컴포넌트의 컬러를 동일하게 매칭하여 시각적 노이즈를 최소화하고, 공기질 수치에만 포인트 컬러를 사용하여 직관성을 높였습니다.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Live Interaction Demo Widget -->
+                    <div class="w-80 h-[500px] neo-obj p-8 flex flex-col relative overflow-hidden transition-all duration-500 hover:scale-[1.02]">
+                        <p class="text-[10px] font-black text-slate-400 mb-8 text-center uppercase tracking-[0.3em]">Virtual Air Dashboard</p>
+                        
+                        <!-- Status Indicator -->
+                        <div id="statusBall" class="w-44 h-44 mx-auto rounded-full neo-inset-obj flex flex-col items-center justify-center mb-10 transition-all duration-700">
+                            <span id="statusEmoji" class="text-6xl mb-3">😊</span>
+                            <span id="statusLabel" class="text-sm font-black text-sky-500 tracking-tight">매우 좋음</span>
+                        </div>
+
+                        <div class="space-y-6">
+                            <div class="flex justify-between items-end px-1">
+                                <div>
+                                    <p class="text-[9px] font-black text-slate-400 uppercase mb-1">PM 10 Density</p>
+                                    <p id="pmDisplay" class="text-xl font-black text-slate-800">12 <span class="text-[10px] font-bold text-slate-400">㎍/m³</span></p>
+                                </div>
+                                <div class="neo-obj px-3 py-1 text-[10px] font-black text-sky-600 bg-white/50">STABLE</div>
+                            </div>
+                            <div class="neo-inset-obj p-4 h-24">
+                                <canvas id="airTrendChart"></canvas>
+                            </div>
+                        </div>
+
+                        <div class="flex gap-4 mt-auto">
+                            <button onclick="simAir('good')" class="flex-1 py-4 neo-obj text-[11px] font-black text-sky-600 active:scale-95 transition-transform">좋음 시뮬레이션</button>
+                            <button onclick="simAir('bad')" class="flex-1 py-4 neo-obj text-[11px] font-black text-rose-500 active:scale-95 transition-transform">나쁨 시뮬레이션</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Detailed Implementation Comparison -->
+            <div class="space-y-10">
+                <h3 class="text-2xl font-black text-slate-900 text-center">Implementation Flow: Wireframe to Final UI</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                    
+                    <!-- Splash Screens -->
+                    <div class="content-card p-8">
+                        <h4 class="text-center font-black text-slate-800 mb-8 flex items-center justify-center gap-2">
+                            <span class="w-1.5 h-1.5 bg-sky-500 rounded-full"></span> 스플래시 화면 변천사
+                        </h4>
+                        <div class="flex gap-6 items-end">
+                            <div class="w-1/2 space-y-3">
+                                <p class="text-center text-[10px] text-slate-400 font-black uppercase tracking-widest">Wireframe</p>
+                                <img src="kids_air_splash_wf.png" class="img-display" onerror="this.src='https://placehold.co/300x600/f8fafc/94a3b8?text=kids_air_splash_wf.png';">
+                            </div>
+                            <div class="w-1/2 space-y-3">
+                                <p class="text-center text-[10px] text-sky-500 font-black uppercase tracking-widest">Final UI</p>
+                                <img src="kids_air_splash_final.jpg" class="img-display ring-4 ring-sky-50" onerror="this.src='https://placehold.co/300x600/f8fafc/94a3b8?text=kids_air_splash_final.jpg';">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Main Dashboard -->
+                    <div class="content-card p-8">
+                        <h4 class="text-center font-black text-slate-800 mb-8 flex items-center justify-center gap-2">
+                            <span class="w-1.5 h-1.5 bg-sky-500 rounded-full"></span> 공기질 대시보드
+                        </h4>
+                        <div class="flex gap-6 items-end">
+                            <div class="w-1/2 space-y-3">
+                                <p class="text-center text-[10px] text-slate-400 font-black uppercase tracking-widest">Wireframe</p>
+                                <img src="kids_air_dashboard_wf.png" class="img-display" onerror="this.src='https://placehold.co/300x600/f8fafc/94a3b8?text=kids_air_dashboard_wf.png';">
+                            </div>
+                            <div class="w-1/2 space-y-3">
+                                <p class="text-center text-[10px] text-sky-500 font-black uppercase tracking-widest">Final UI</p>
+                                <img src="kids_air_dashboard_final.jpg" class="img-display ring-4 ring-sky-50" onerror="this.src='https://placehold.co/300x600/f8fafc/94a3b8?text=kids_air_dashboard_final.jpg';">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Menu Layout -->
+                    <div class="content-card p-8">
+                        <h4 class="text-center font-black text-slate-800 mb-8 flex items-center justify-center gap-2">
+                            <span class="w-1.5 h-1.5 bg-sky-500 rounded-full"></span> 기능 메뉴 구성
+                        </h4>
+                        <div class="flex gap-6 items-end">
+                            <div class="w-1/2 space-y-3">
+                                <p class="text-center text-[10px] text-slate-400 font-black uppercase tracking-widest">Wireframe</p>
+                                <img src="kids_air_menu_wf.png" class="img-display" onerror="this.src='https://placehold.co/300x600/f8fafc/94a3b8?text=kids_air_menu_wf.png';">
+                            </div>
+                            <div class="w-1/2 space-y-3">
+                                <p class="text-center text-[10px] text-sky-500 font-black uppercase tracking-widest">Final UI</p>
+                                <img src="kids_air_menu_final.jpg" class="img-display ring-4 ring-sky-50" onerror="this.src='https://placehold.co/300x600/f8fafc/94a3b8?text=kids_air_menu_final.jpg';">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Additional UI -->
+                    <div class="content-card p-8">
+                        <h4 class="text-center font-black text-slate-800 mb-8 flex items-center justify-center gap-2">
+                            <span class="w-1.5 h-1.5 bg-sky-500 rounded-full"></span> 검색 인터페이스
+                        </h4>
+                        <div class="flex flex-col items-center space-y-4">
+                            <p class="text-center text-[10px] text-sky-500 font-black uppercase tracking-widest">Final Search UI</p>
+                            <img src="kids_air_search_final.jpg" class="img-display max-w-[280px] shadow-xl" onerror="this.src='https://placehold.co/300x600/f8fafc/94a3b8?text=kids_air_search_final.jpg';">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 4: Expected Impact -->
+        <div id="impact" class="max-w-5xl w-full tab-content space-y-10">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="content-card p-10 text-center group hover:bg-sky-600 transition-all duration-500">
+                    <div class="text-5xl mb-8 group-hover:scale-125 transition-transform duration-500">🏛️</div>
+                    <h4 class="font-black text-slate-900 text-xl mb-4 group-hover:text-white">공공데이터 활용</h4>
+                    <p class="text-sm text-slate-500 leading-relaxed group-hover:text-sky-100 font-medium">파편화된 정부 데이터를 통합 시각화하여 영유아 보육 환경의 투명성을 확보했습니다.</p>
+                </div>
+                <div class="content-card p-10 text-center group hover:bg-emerald-600 transition-all duration-500">
+                    <div class="text-5xl mb-8 group-hover:scale-125 transition-transform duration-500">🌿</div>
+                    <h4 class="font-black text-slate-900 text-xl mb-4 group-hover:text-white">보육 질 개선</h4>
+                    <p class="text-sm text-slate-500 leading-relaxed group-hover:text-emerald-100 font-medium">실시간 수치 공개를 통해 어린이집의 자발적인 실내 환경 관리를 유도하는 트리거 역할을 수행합니다.</p>
+                </div>
+                <div class="content-card p-10 text-center group hover:bg-slate-900 transition-all duration-500">
+                    <div class="text-5xl mb-8 group-hover:scale-125 transition-transform duration-500">🏆</div>
+                    <h4 class="font-black text-slate-900 text-xl mb-4 group-hover:text-white">시장 선점 효과</h4>
+                    <p class="text-sm text-slate-500 leading-relaxed group-hover:text-slate-400 font-medium">국내 최초의 '어린이집 전용 실내 공기질 앱' 타이틀로 틈새 시장에서 독보적 지위를 확보했습니다.</p>
+                </div>
+            </div>
+        </div>
+
+        <footer class="mt-24 py-12 border-t border-slate-200 text-center w-full max-w-5xl">
+            <p class="text-slate-400 text-xs font-black tracking-[0.5em] uppercase mb-2">Kids Air Mobile Project Hub</p>
+            <p class="text-slate-300 text-[10px] font-bold">Planning & UI/UX Design by Heo Jaeseock. Built for Professional Portfolio.</p>
+        </footer>
+
+    </div>
+
+    <script>
+        // Smooth Tab Switching
+        function showTab(evt, tabId) {
+            evt.preventDefault();
+            
+            const contents = document.querySelectorAll('.tab-content');
+            contents.forEach(c => c.classList.remove('active'));
+            
+            const links = document.querySelectorAll('.nav-link');
+            links.forEach(l => l.classList.remove('active'));
+            
+            document.getElementById(tabId).classList.add('active');
+            evt.currentTarget.classList.add('active');
+            
+            if(tabId === 'design-guide') {
+                setTimeout(initAirChart, 100);
+            }
+            
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Neumorphic Widget Controller
+        let airChart = null;
+        
+        function simAir(mode) {
+            const ball = document.getElementById('statusBall');
+            const emoji = document.getElementById('statusEmoji');
+            const label = document.getElementById('statusLabel');
+            const val = document.getElementById('pmDisplay');
+            
+            if(mode === 'good') {
+                ball.style.boxShadow = "inset 6px 6px 12px rgba(163, 177, 198, 0.6), inset -6px -6px 12px rgba(255, 255, 255, 0.8)";
+                emoji.innerText = "😊";
+                label.innerText = "매우 좋음";
+                label.className = "text-sm font-black text-sky-500 tracking-tight";
+                val.innerHTML = '12 <span class="text-[10px] font-bold text-slate-400">㎍/m³</span>';
+                updateChart([15, 14, 12, 10, 12]);
+            } else {
+                // Negative Neumorphism (Danger tone)
+                ball.style.boxShadow = "inset 6px 6px 12px rgba(225, 29, 72, 0.2), inset -6px -6px 12px rgba(255, 255, 255, 0.8)";
+                emoji.innerText = "😷";
+                label.innerText = "매우 나쁨";
+                label.className = "text-sm font-black text-rose-500 tracking-tight";
+                val.innerHTML = '85 <span class="text-[10px] font-bold text-slate-400">㎍/m³</span>';
+                updateChart([45, 60, 75, 80, 85]);
+            }
+        }
+
+        function initAirChart() {
+            if(airChart) return;
+            
+            const ctx = document.getElementById('airTrendChart').getContext('2d');
+            airChart = new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: ['1', '2', '3', '4', '5'],
+                    datasets: [{
+                        data: [15, 14, 12, 10, 12],
+                        borderColor: '#0ea5e9',
+                        borderWidth: 3,
+                        tension: 0.4,
+                        pointRadius: 0,
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false }, tooltip: {enabled: false} },
+                    scales: {
+                        y: { display: false, min: 0, max: 100 },
+                        x: { display: false }
+                    }
+                }
+            });
+        }
+
+        function updateChart(data) {
+            if(!airChart) return;
+            airChart.data.datasets[0].data = data;
+            airChart.data.datasets[0].borderColor = data[4] > 50 ? '#f43f5e' : '#0ea5e9';
+            airChart.update();
+        }
+    </script>
+</body>
+</html>
