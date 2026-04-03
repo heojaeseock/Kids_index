@@ -16,6 +16,7 @@
             margin: 0;
             padding: 0;
             word-break: keep-all; 
+            overflow-wrap: break-word;
             overflow-x: hidden;
         }
 
@@ -135,11 +136,11 @@
             top: 24px;
             left: 24px;
             z-index: 1100;
-            @apply flex items-center gap-3 px-8 py-3 bg-white text-sky-600 rounded-full font-black text-base shadow-2xl transition-all cursor-pointer border-2 border-white;
+            @apply flex items-center gap-3 px-8 py-3 bg-white text-sky-600 rounded-full font-black text-base shadow-2xl transition-all cursor-pointer border-2 border-slate-200;
             box-shadow: 0 15px 30px rgba(0,0,0,0.4);
         }
         .modal-back-btn:hover {
-            @apply bg-sky-50;
+            @apply bg-sky-50 border-sky-300;
             transform: translateX(4px);
         }
 
@@ -196,8 +197,7 @@
                 </div>
                 <h1 class="text-4xl md:text-6xl font-black text-slate-900 mb-6 tracking-tight leading-tight italic">맑은 공기를 담은<br><span class="text-sky-600">어린이집 실내 케어 앱</span></h1>
                 <p class="text-slate-500 text-lg md:text-xl leading-relaxed max-w-3xl font-medium">
-                    정부 공공데이터를 활용해 영유아 시설의 공기 상태를 실시간으로 보여주고,<br> 
-                    직관적인 수치 정보를 통해 부모가 안심할 수 있는 환경을 설계했습니다.
+                    정부 공공데이터를 활용해 영유아 시설의 공기 상태를 실시간으로 보여주고, 직관적인 수치 정보를 통해 부모가 안심할 수 있는 환경을 설계했습니다.
                 </p>
                 <div class="flex flex-wrap justify-center md:justify-start gap-4 mt-10 text-[11px] font-black text-slate-400">
                     <span class="bg-white border border-slate-200 px-5 py-2.5 rounded-2xl shadow-sm tracking-widest">진행 기간: 2021.03 - 06</span>
@@ -240,15 +240,13 @@
                         <div class="p-6 bg-slate-50 rounded-3xl border border-slate-200">
                             <p class="text-sm text-slate-700 leading-relaxed font-bold mb-2 italic">환경 리스크</p>
                             <p class="text-sm text-slate-600 leading-relaxed">
-                                실외보다 실내 공기 오염이 영유아 건강에 더 치명적임에도 불구하고,<br>
-                                어린이집의 실시간 데이터를 통합해서 보여주는 전문 서비스는 없었습니다.
+                                실외보다 실내 공기 오염이 영유아 건강에 더 치명적임에도 불구하고, 어린이집의 실시간 데이터를 통합해서 보여주는 전문 서비스는 없었습니다.
                             </p>
                         </div>
                         <div class="p-6 bg-slate-50 rounded-3xl border border-slate-200">
                             <p class="text-sm text-slate-700 leading-relaxed font-bold mb-2 italic">사용자 니즈 파악</p>
                             <p class="text-sm text-slate-600 leading-relaxed">
-                                학부모들은 미세먼지가 심한 날, 자녀가 있는 공간의 환기 상태나<br>
-                                공기청정기 가동 여부를 직접 확인하고 싶어 하는 갈증이 매우 컸습니다.
+                                학부모들은 미세먼지가 심한 날, 자녀가 있는 공간의 환기 상태나 공기청정기 가동 여부를 직접 확인하고 싶어 하는 갈증이 매우 컸습니다.
                             </p>
                         </div>
                     </div>
@@ -290,9 +288,7 @@
                 <div class="space-y-6 mb-10 text-center">
                     <h3 class="text-3xl font-black text-slate-900 border-b-4 border-slate-100 pb-6">화면 구조 설계</h3>
                     <p class="text-slate-600 text-base leading-relaxed font-medium max-w-3xl mx-auto">
-                        공공데이터 API를 실시간으로 가공하여 스플래시, 메인 대시보드, 상세 조회,<br>
-                        개인 위젯 설정까지 이어지는 매끄러운 흐름을 기획했습니다.<br>
-                        사용자가 원하는 정보를 최소한의 터치로 찾을 수 있도록 최적화했습니다.
+                        공공데이터 API를 실시간으로 가공하여 스플래시, 메인 대시보드, 상세 조회, 개인 위젯 설정까지 이어지는 매끄러운 흐름을 기획했습니다. 사용자가 원하는 정보를 최소한의 터치로 찾을 수 있도록 최적화했습니다.
                     </p>
                 </div>
                 
@@ -309,11 +305,11 @@
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-12">
                     <div class="p-8 bg-slate-50 rounded-[2.5rem] space-y-3 border border-slate-100">
                         <h4 class="font-black text-slate-800 text-base flex items-center gap-2">📍 위치 기반 인터랙션</h4>
-                        <p class="text-xs text-slate-500 leading-relaxed font-medium">현재 위치나 자녀가 다니는 어린이집을 등록하여<br>주변 공기 상태를 한눈에 파악합니다.</p>
+                        <p class="text-xs text-slate-500 leading-relaxed font-medium">현재 위치나 자녀가 다니는 어린이집을 등록하여 주변 공기 상태를 한눈에 파악합니다.</p>
                     </div>
                     <div class="p-8 bg-slate-50 rounded-[2.5rem] space-y-3 border border-slate-100">
                         <h4 class="font-black text-slate-800 text-base flex items-center gap-2">📌 맞춤형 위젯 시스템</h4>
-                        <p class="text-xs text-slate-500 leading-relaxed font-medium">앱을 직접 열지 않고도 스마트폰 배경화면에서<br>실시간 공기 상태를 바로 확인합니다.</p>
+                        <p class="text-xs text-slate-500 leading-relaxed font-medium">앱을 직접 열지 않고도 스마트폰 배경화면에서 실시간 공기 상태를 바로 확인합니다.</p>
                     </div>
                 </div>
             </div>
@@ -326,8 +322,7 @@
                 <div class="max-w-3xl mb-16 relative z-10 text-center md:text-left">
                     <h3 class="text-4xl font-black text-slate-900 mb-8">주요 화면 및 UX 기획</h3>
                     <p class="text-slate-600 text-lg leading-relaxed font-medium">
-                        어린이집 실내 환경을 투명하게 공개하여 학부모의 신뢰를 얻는 것이 핵심입니다.<br>
-                        누구나 쉽게 공기질의 상태를 판별할 수 있도록 직관적인 인터페이스를 설계했습니다.
+                        어린이집 실내 환경을 투명하게 공개하여 학부모의 신뢰를 얻는 것이 핵심입니다. 누구나 쉽게 공기질의 상태를 판별할 수 있도록 직관적인 인터페이스를 설계했습니다.
                     </p>
                 </div>
 
@@ -337,14 +332,14 @@
                             <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center text-3xl shrink-0 border border-slate-200 shadow-sm">😊</div>
                             <div class="space-y-2">
                                 <h4 class="font-black text-slate-800 text-xl">직관적인 상태 알림</h4>
-                                <p class="text-sm text-slate-500 leading-relaxed font-medium">복잡한 수치 대신 색상과 이모지를 적극적으로 활용하여,<br>사용자가 한눈에 현재 위험도를 인지할 수 있도록 돕습니다.</p>
+                                <p class="text-sm text-slate-500 leading-relaxed font-medium">복잡한 수치 대신 색상과 이모지를 적극적으로 활용하여, 사용자가 한눈에 현재 위험도를 인지할 수 있도록 돕습니다.</p>
                             </div>
                         </div>
                         <div class="flex gap-6 items-start">
                             <div class="w-16 h-16 bg-white rounded-2xl flex items-center justify-center text-3xl shrink-0 border border-slate-200 shadow-sm">📋</div>
                             <div class="space-y-2">
                                 <h4 class="font-black text-slate-800 text-xl">시간대별 세부 데이터</h4>
-                                <p class="text-sm text-slate-500 leading-relaxed font-medium">단순 현재 수치를 넘어, 시간대별 공기질 변화를 표로 제공하여<br>운영의 투명성과 신뢰도를 확보합니다.</p>
+                                <p class="text-sm text-slate-500 leading-relaxed font-medium">단순 현재 수치를 넘어, 시간대별 공기질 변화를 표로 제공하여 운영의 투명성과 신뢰도를 확보합니다.</p>
                             </div>
                         </div>
                     </div>
@@ -457,21 +452,21 @@
                     <div class="text-6xl mb-10 transition-transform duration-500">🏛️</div>
                     <h4 class="font-black text-slate-900 text-xl mb-6 group-hover:text-white">공공데이터 선순환</h4>
                     <p class="text-sm text-slate-500 leading-relaxed group-hover:text-sky-100 font-bold">
-                        정부의 데이터를 사용자 친화적으로 재가공하여<br>영유아 보육 환경의 투명성을 높였습니다.
+                        정부의 데이터를 사용자 친화적으로 재가공하여 영유아 보육 환경의 투명성을 높였습니다.
                     </p>
                 </div>
                 <div class="content-card p-12 group hover:bg-emerald-600 transition-all duration-500 hover:-translate-y-4">
                     <div class="text-6xl mb-10 transition-transform duration-500">🌿</div>
                     <h4 class="font-black text-slate-900 text-xl mb-6 group-hover:text-white">보육 환경 개선</h4>
                     <p class="text-sm text-slate-500 leading-relaxed group-hover:text-emerald-100 font-bold">
-                        수치 공개를 통해 어린이집 스스로 쾌적한<br>환경을 유지하도록 유도하는 계기를 마련했습니다.
+                        수치 공개를 통해 어린이집 스스로 쾌적한 환경을 유지하도록 유도하는 계기를 마련했습니다.
                     </p>
                 </div>
                 <div class="content-card p-12 group hover:bg-slate-900 transition-all duration-500 hover:-translate-y-4">
                     <div class="text-6xl mb-10 transition-transform duration-500">🏆</div>
                     <h4 class="font-black text-slate-900 text-xl mb-6 group-hover:text-white">시장 선점 효과</h4>
                     <p class="text-sm text-slate-500 leading-relaxed group-hover:text-slate-400 font-bold">
-                        국내 최초의 어린이집 전용 공기질 앱 타이틀로<br>기존 알림장 앱 시장과 차별화된 경쟁력을 확보했습니다.
+                        국내 최초의 어린이집 전용 공기질 앱 타이틀로 기존 알림장 앱 시장과 차별화된 경쟁력을 확보했습니다.
                     </p>
                 </div>
             </div>
